@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 66px;
+  position: relative;
 }
 
 .about-me__description {
@@ -43,12 +44,13 @@
 
 .about-me__github-link {
   display: block;
-  padding-top: 99px;
   text-decoration: none;
   color: #fff;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
+  position: absolute;
+  bottom: 0;
 }
 
 .about-me__photo {
@@ -58,3 +60,34 @@
   object-fit: cover;
   object-position: top;
 }
+
+@media (max-width: 800px) {
+  .about-me__container {
+    padding-top: 90px;
+  }
+
+  .about-me__article {
+    column-gap: 40px;
+  }
+
+  .about-me__subtitle {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .about-me__job-and-age {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__text {
+    padding-top: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+}  

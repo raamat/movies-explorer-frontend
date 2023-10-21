@@ -40,3 +40,9 @@
   margin: 0;
   color: #8b8b8b;
 }
+
+@media (max-width: 800px) {
+  .footer__container {
+    padding: 127px 30px 0;
+  }
+}

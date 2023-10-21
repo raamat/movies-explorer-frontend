@@ -45,6 +45,12 @@
   color: #000;
 }
 
+@media (max-width: 800px) {
+  .header__container {
+    padding: 18px 30px;
+  }
+}
+
 @media (max-width: 420px) {
   .header__menu {
     font-size: 12px;

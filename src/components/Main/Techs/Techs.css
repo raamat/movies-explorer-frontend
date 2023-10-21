@@ -54,3 +54,32 @@
   border-radius: 10px;
   text-align: center;
 }
+
+@media (max-width: 800px) {
+  .techs__container {
+    padding-top: 93px;
+    padding-bottom: 90px;
+  }
+
+  .techs__subtitle {
+    padding-top: 80px;
+  }
+
+  .techs__text {
+    padding-top: 22px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+  }
+
+  .techs__list {
+    padding-top: 83px;
+    font-size: 12px;
+  }
+
+  .techs__list-item {
+    max-width: 84px;
+    padding: 21px 0 22px;
+  }
+}  
