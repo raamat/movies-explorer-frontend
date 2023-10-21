@@ -10,7 +10,7 @@ export default function Portfolio() {
       <ul className="portfolio__list">
         <li className="portfolio__list-item">
           <PortfolioLink
-            link="https://raamat.github.io/how-to-learn"
+            link="https://github.com/raamat/how-to-learn"
             text="Статичный сайт"
           />
         </li>
