@@ -9,7 +9,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
-  color: #8B8B8B;
+  color: #8b8b8b;
   margin: 0;
 }
 
@@ -35,4 +35,18 @@
     padding-top: 90px;
     padding-bottom: 10px;
   }
-}  
+}
+
+@media (max-width: 420px) {
+  .portfolio__container {
+    padding: 70px 14px 0;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+  }
+
+  .portfolio__list {
+    padding: 20px 0;
+  }
+}

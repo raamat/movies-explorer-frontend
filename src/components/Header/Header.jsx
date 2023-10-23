@@ -10,12 +10,12 @@ export default function Header() {
         <div className="header__logo"></div>
         <ul className="header__menu">
           <li className="header__menu-item">
-            <Link className="header__link" to="/signup">
+            <Link className="header__link opacity" to="/signup">
               Регистрация
             </Link>
           </li>
           <li>
-            <Link className="header__link header__link_green-button" to="/signin">
+            <Link className="header__link header__link_green-button opacity" to="/signin">
               Войти
             </Link>
           </li>

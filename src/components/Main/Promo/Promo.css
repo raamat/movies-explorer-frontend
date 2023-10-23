@@ -21,7 +21,8 @@
 .promo__text {
   font-weight: 400;
   font-size: 13px;
-  line-height: 16px;
+  font-style: normal;
+  line-height: normal;
   margin: 36px 0 0;
   max-width: 310px;
   opacity: 0.5;
@@ -71,6 +72,7 @@
   .promo__text {
     margin: auto;
     padding-top: 22px;
+    max-width: 260px;
   }
 
   .promo__link {
@@ -79,8 +81,30 @@
 }
 
 @media (max-width: 420px) {
+  .promo__container {
+    padding: 70px 10px 0;
+  }
+
+  .promo__description {
+    padding-top: 44px;
+  }
+
   .promo__title {
     font-size: 30px;
     line-height: 38px;
+    letter-spacing: -1.2px;
+  }
+
+  .promo__text {
+    padding-top: 24px;
+  }
+
+  .promo__link {
+    margin: 80px auto 30px;
+  }
+
+  .promo__logo {
+    max-width: 210px;
+    width: 100%;
   }
 }

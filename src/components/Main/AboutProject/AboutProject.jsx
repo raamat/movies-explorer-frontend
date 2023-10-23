@@ -24,14 +24,14 @@ export default function AboutProject() {
         </p>
       </div>
       <div className="about-project__timeline">
-        <div className="about-project__timeline-cell about-project__timeline-cell_green">
+        <div className="about-project__timeline-cell about-project__timeline-cell_background-color_green">
           1 неделя
         </div>
-        <div className="about-project__timeline-cell about-project__timeline-cell_grey">
+        <div className="about-project__timeline-cell about-project__timeline-cell_background-color_grey">
           4 недели
         </div>
-        <div className="about-project__timeline-cell">Back-end</div>
-        <div className="about-project__timeline-cell">Front-end</div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">Back-end</div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">Front-end</div>
       </div>
     </Section>
   );

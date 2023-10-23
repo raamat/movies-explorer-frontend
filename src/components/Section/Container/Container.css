@@ -8,3 +8,9 @@
     padding: 0px 50px;
   }
 }
+
+@media (max-width: 420px) {
+  .container {
+    padding: 0px 18px;
+  }
+}

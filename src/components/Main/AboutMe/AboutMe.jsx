@@ -22,7 +22,7 @@ export default function AboutMe() {
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
           <a
-            className="about-me__github-link"
+            className="about-me__github-link opacity"
             href="https://github.com/raamat"
             target="blank"
             rel="noreferer"
