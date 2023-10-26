@@ -1,25 +1,14 @@
+import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 
 import "./Header.css";
-import "../../images/logo.svg";
 
-export default function Header() {
+export default function Header({ isAuth }) {
   return (
-    <header className="header">
+    <header className={`header ${!isAuth ? 'header_color_blue' : ''}`}>
       <div className="header__container">
-        <div className="header__logo"></div>
-        <ul className="header__menu">
-          <li className="header__menu-item">
-            <Link className="header__link opacity" to="/signup">
-              Регистрация
-            </Link>
-          </li>
-          <li>
-            <Link className="header__link header__link_green-button opacity" to="/signin">
-              Войти
-            </Link>
-          </li>
-        </ul>
+        <Link className="header__logo" to="/" />
+        <Navigation isAuth={isAuth} />
       </div>
     </header>
   );

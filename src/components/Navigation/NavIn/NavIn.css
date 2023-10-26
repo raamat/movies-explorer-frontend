@@ -1,0 +1,48 @@
+.nav-in {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+  line-height: 16px;;
+}
+
+.nav-in__link {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.nav-in__link_type_button {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  padding: 30px;
+  padding: 0;
+}
+
+.nav-in__button-account {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../images/icon-account.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+  background-color: #313131;
+  border-radius: 6px;
+}
+
+@media (max-width: 420px) {
+  .nav-in {
+    font-size: 10px;
+  }
+  .nav-in__link_type_green-button {
+    width: 54px;
+    height: 26px;
+    margin-left: 14px;
+  }
+}

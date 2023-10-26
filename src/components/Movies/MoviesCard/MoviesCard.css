@@ -1,0 +1,25 @@
+.card {
+  display: flex;
+  max-width: 360px;
+  width: 100%;
+  max-height: 319px;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid red;
+}
+
+.card__title { 
+  margin: 0;
+  display: block;
+}
+
+.card__title-container {
+  display: flex;
+  justify-content: space-between;
+  height: 54px;
+}
+
+.card__image {
+  width: 360px;
+  height: 200px;
+}

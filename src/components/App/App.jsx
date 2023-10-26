@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "../Main/Main";
 import Register from "../Register/Register";
@@ -6,15 +7,16 @@ import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
-import Page404 from '../Page404/Page404';
+import Page404 from "../Page404/Page404";
 import "./App.css";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(true);
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Main />} /> 
+          <Route path="/" element={<Main isAuth={isAuth} />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
