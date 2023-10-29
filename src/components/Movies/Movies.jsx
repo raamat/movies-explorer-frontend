@@ -1,18 +1,24 @@
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
-import MoviesCard from "./MoviesCard/MoviesCard";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import Section from "../Section/Section";
 
 import "./Movies.css";
 
 export default function Movies() {
   return (
-    <div className="movies">
+    <>
       <Header />
-      <SearchForm />
-      <MoviesCardList/>
+      <main className="movies">
+        <SearchForm />
+        <MoviesCardList/>
+        <Section>
+          <button className="movies__button">Ещё</button>
+        </Section>
+      </main>
       <Footer />
-    </div>
+    </>
+   
   );
 }

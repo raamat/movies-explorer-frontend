@@ -6,13 +6,23 @@ import "./MoviesCardList.css";
 export default function MoviesCardList() {
   return (
    <Section classNameSection="card-list">
-     <div><MoviesCard/></div>
-     <div><MoviesCard/></div>
-     <div><MoviesCard/></div>
-     <div><MoviesCard/></div>
-     <div><MoviesCard/></div>
-     <div><MoviesCard/></div>
+     <div className="card-list__table">
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+       <div><MoviesCard/></div>
+     </div>
    </Section>
+     
+    
 
   );
 }

@@ -9,7 +9,7 @@ export default function NavIn() {
         <Link className="nav-in__link opacity">Фильмы</Link>
       </li>
       <li>
-        <Link className="nav-in__link opacity">Сохранённые фильмы</Link>
+        <Link className="nav-in__link nav-in__link_font-weight_400 opacity">Сохранённые фильмы</Link>
       </li>
       <li>
         <Link className="nav-in__link nav-in__link_type_button opacity">

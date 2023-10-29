@@ -1,8 +1,13 @@
+.search-form__container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px;
+}
+
 .search-form__block {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  border: 1px solid grey;
+  border: 1px solid rgba(170, 170, 170, 1);
   border-radius: 5px;
   background-color: transparent;
   padding: 10px 10px 10px 25px;
@@ -25,4 +30,5 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+  cursor: pointer;
 }

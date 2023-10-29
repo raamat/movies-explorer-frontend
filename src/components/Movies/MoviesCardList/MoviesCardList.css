@@ -1,6 +1,7 @@
-.card-list {
+.card-list__table {
   display: grid;
+  gap: 32px 28px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 100px 100px;
-  border: 1px solid green;
+  padding-top: 70px;
+  padding-bottom: 10px;
 }
