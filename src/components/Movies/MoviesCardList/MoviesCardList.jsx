@@ -15,14 +15,7 @@ export default function MoviesCardList() {
        <div><MoviesCard/></div>
        <div><MoviesCard/></div>
        <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
      </div>
    </Section>
-     
-    
-
   );
 }

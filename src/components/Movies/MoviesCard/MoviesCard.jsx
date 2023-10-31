@@ -8,7 +8,7 @@ export default function MoviesCard() {
   return (
     <div className="card">
       <div className="card__title-container">
-        <title className="card__title">В погоне за Бенкси</title>
+        <title className="card__title">В погоне за Бенкси hhhhhhhhhhhhh</title>
         <div className="card__time">0ч42м</div>
       </div>
       <img className="card__image" src={Photographer} alt="Фотограф"></img>

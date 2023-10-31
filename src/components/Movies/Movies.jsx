@@ -13,7 +13,7 @@ export default function Movies() {
       <main className="movies">
         <SearchForm />
         <MoviesCardList/>
-        <Section>
+        <Section classNameSection="button">
           <button className="movies__button">Ещё</button>
         </Section>
       </main>

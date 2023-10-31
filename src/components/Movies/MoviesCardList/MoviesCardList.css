@@ -1,7 +1,31 @@
+.card-list__container {
+  justify-content: center;
+  padding: 0 30px;
+}
+
 .card-list__table {
   display: grid;
-  gap: 32px 28px;
   grid-template-columns: repeat(3, 1fr);
+  gap: 32px 28px;
   padding-top: 70px;
   padding-bottom: 10px;
+}
+
+@media (max-width: 1050px) {
+  .card-list__table { 
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 35px;
+  }
+}
+
+@media (max-width: 800px) {
+  .card-list__table { 
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .card-list__table { 
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

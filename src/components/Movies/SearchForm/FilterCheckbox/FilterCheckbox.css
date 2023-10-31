@@ -54,3 +54,9 @@
   font-size: 13px;
   line-height: 18px;
 }
+
+@media (max-width: 800px) {
+  .filter-checkbox__container {
+    padding-bottom:  51px;
+  }  
+}

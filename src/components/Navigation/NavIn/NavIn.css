@@ -41,6 +41,12 @@
   border-radius: 6px;
 }
 
+@media (max-width: 800px) {
+  .nav-in {
+    display: none;
+  }
+}
+
 @media (max-width: 420px) {
   .nav-in {
     font-size: 10px;

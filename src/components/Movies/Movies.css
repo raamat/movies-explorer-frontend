@@ -20,5 +20,12 @@
   font-weight: 500;
   line-height: normal;
   margin-top: 50px;
-  margin-bottom: 80px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 800px) {
+  .button__container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
