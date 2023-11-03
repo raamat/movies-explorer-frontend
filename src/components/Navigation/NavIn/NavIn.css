@@ -41,9 +41,25 @@
   border-radius: 6px;
 }
 
+.nav-in__button_burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../../../images/icon-menu-burger.svg");
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
 @media (max-width: 800px) {
   .nav-in {
     display: none;
+  }
+
+  .nav-in__button_burger {
+    display: block;
   }
 }
 

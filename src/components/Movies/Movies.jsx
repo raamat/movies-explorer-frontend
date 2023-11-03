@@ -1,8 +1,8 @@
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm";
-import Footer from "../Footer/Footer";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import Section from "../Section/Section";
+import MoreButton from "./MoreButton/MoreButton";
+import Footer from "../Footer/Footer";
 
 import "./Movies.css";
 
@@ -12,13 +12,10 @@ export default function Movies() {
       <Header />
       <main className="movies">
         <SearchForm />
-        <MoviesCardList/>
-        <Section classNameSection="button">
-          <button className="movies__button">Ещё</button>
-        </Section>
+        <MoviesCardList />
+        <MoreButton />
       </main>
       <Footer />
     </>
-   
   );
 }
