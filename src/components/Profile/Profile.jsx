@@ -19,6 +19,7 @@ export default function Profile() {
               type="text"
               minLength="2"
               maxLength="20"
+              required
             >
               {name}
             </imput>
@@ -30,6 +31,7 @@ export default function Profile() {
               type="email"
               minLength="5"
               maxLength="30"
+              required
             >{email}</imput>
           </label>
           <ul className="profile__buttons">
