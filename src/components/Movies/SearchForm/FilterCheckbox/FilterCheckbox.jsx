@@ -1,25 +1,22 @@
-import './FilterCheckbox.css';
+import "./FilterCheckbox.css";
 
-const isOn = true;
-
-export default function FilterCheckbox() {
+export default function FilterCheckbox({ isChecked, onChecked }) {
   return (
     <div className="filter-checkbox__container">
       <input
         className="filter-checkbox__input"
         id={`filter-checkbox-new`}
         type="checkbox"
+        value={isChecked}
+        onChange={() => onChecked(!isChecked)}
       />
       <label
-        style={{ background: isOn && "#3DDC84" }}
-        className="filter-checkbox__label"
+        className={`filter-checkbox__label${isChecked ? " filter-checkbox__checked" : ""}`}
         htmlFor={`filter-checkbox-new`}
-      >    
+      >
         <span className={`filter-checkbox__button`} />
       </label>
-      <p className="filter-checkbox__text">
-        Короткометражки
-      </p>
+      <p className="filter-checkbox__text">Короткометражки</p>
     </div>
   );
-};
+}

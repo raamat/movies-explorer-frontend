@@ -9,7 +9,5 @@
 @media (max-width: 420px) {
   .footer__link {
     font-size: 12px;
-    padding: 0;
-    flex-direction: column;
   }
 }

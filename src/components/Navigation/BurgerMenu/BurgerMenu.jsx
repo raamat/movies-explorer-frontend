@@ -4,42 +4,32 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./BurgerMenu.css";
 
-export default function BurgerMenu() {
-  const isBurgerOpen = useContext(CurrentUserContext).isBurgerOpen;
+export default function BurgerMenu({ isBurgerOpen, onBurgerClose }) {
+  // const isBurgerOpen = useContext(CurrentUserContext).isBurgerOpen;
   return (
-    <div
-      className={
-        !isBurgerOpen ? `burger-menu` : `burger-menu burger-menu_opened`
-      }
-    >
+    <div className={`burger-menu${isBurgerOpen ? " burger-menu_opened" : ""}`}>
       <main className="burger-menu__container">
-        <button className="burger-menu__close-button"></button>
+        <button className="burger-menu__close-button opacity" onClick={onBurgerClose}></button>
         <ul className="burger-menu__links">
-          <li>
-            <NavLink className="burger-menu__link" to="/">
+          <li className="burger-menu__item">
+            <NavLink className="burger-menu__link opacity" to="/">
               Главная
             </NavLink>
           </li>
-          <li>
+          <li className="burger-menu__item">
             <NavLink className="burger-menu__link opacity" to="/movies">
               Фильмы
             </NavLink>
           </li>
-          <li>
+          <li className="burger-menu__item">
             <NavLink className="burger-menu__link opacity" to="/saved-movies">
               Сохранённые фильмы
             </NavLink>
           </li>
-          <li>
-            <Link
-              className="burger-menu__link burger-menu__link_type_button opacity"
-              to="/profile"
-            >
-              Аккаунт
-              <div className="burger-menu__link__button-account"></div>
-            </Link>
-          </li>
         </ul>
+        <Link className="burger-menu__button opacity" to="/profile">
+          Аккаунт
+        </Link>
       </main>
     </div>
   );

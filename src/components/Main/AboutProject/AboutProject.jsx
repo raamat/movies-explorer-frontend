@@ -6,6 +6,7 @@ import "./AboutProject.css";
 export default function AboutProject() {
   return (
     <Section classNameSection="about-project">
+      <div id="about-project__id"></div>
       <SectionTitle className={"about-project__title"} text={"О проекте"} />
       <div className="about-project__description">
         <h3 className="about-project__subtitle">
@@ -30,8 +31,12 @@ export default function AboutProject() {
         <div className="about-project__timeline-cell about-project__timeline-cell_background-color_grey">
           4 недели
         </div>
-        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">Back-end</div>
-        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">Front-end</div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">
+          Back-end
+        </div>
+        <div className="about-project__timeline-cell about-project__timeline-cell_type_title">
+          Front-end
+        </div>
       </div>
     </Section>
   );

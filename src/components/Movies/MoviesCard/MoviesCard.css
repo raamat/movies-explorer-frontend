@@ -16,7 +16,7 @@
   padding: 18px;
 }
 
-.card__title { 
+.card__title {
   margin: 0;
   display: block;
   color: #fff;
@@ -68,35 +68,39 @@
 }
 
 @media (max-width: 1120px) {
-  .card__title { 
+  .card__title {
     max-width: 200px;
   }
 }
 
 @media (max-width: 1050px) {
-  .card__title { 
+  .card__title {
     max-width: 220px;
   }
 }
 
 @media (max-width: 750px) {
-  .card__title { 
+  .card__title {
     max-width: 200px;
   }
 }
 
 @media (max-width: 700px) {
-  .card__title { 
+  .card__title {
     max-width: 220px;
   }
 }
 
 @media (max-width: 420px) {
-  .card__title { 
-    font-size: 12px
+  .card__title-container {
+    padding-bottom: 16px;
   }
-  
-  .card__time { 
-    font-size: 10px
+
+  .card__title {
+    font-size: 12px;
+  }
+
+  .card__time {
+    font-size: 10px;
   }
 }

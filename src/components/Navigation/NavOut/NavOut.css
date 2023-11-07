@@ -26,10 +26,10 @@
 }
 
 @media (max-width: 420px) {
-  .header__menu {
+  .nav-out {
     font-size: 10px;
   }
-  .header__link_type_green-button {
+  .nav-out__link_type_green-button {
     width: 54px;
     height: 26px;
     margin-left: 14px;

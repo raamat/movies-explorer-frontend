@@ -33,6 +33,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  color: #8b8b8b;
 }
 
 .register__input {
@@ -42,7 +43,15 @@
   line-height: normal;
   padding: 5px 0 10px;
   min-height: 17px;
+  border: none;
   border-bottom: 1px solid #424242;
+  color: #fff;
+  background: transparent;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.register__input:focus {
+  border-bottom: 1px solid #4285f4;
 }
 
 .register__button {

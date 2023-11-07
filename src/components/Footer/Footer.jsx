@@ -10,7 +10,7 @@ export default function Footer() {
         </h2>
         <div className="footer__block">
           <p className="footer__copyright">© 2023</p>
-          <ul className="footer__link">
+          <ul className="footer__links">
             <li>
               <FooterLink
                 link={"https://practicum.yandex.ru"}

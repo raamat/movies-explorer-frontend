@@ -5,38 +5,46 @@ import "./Profile.css";
 const name = "Виталий";
 const email = "pochta@yandex.ru";
 
-export default function Profile() {
+export default function Profile({ onSubmit }) {
+  function onPrevSubmit(e) {
+    e.preventDefault();
+    onSubmit?.();
+  }
   return (
     <>
       <Header />
       <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>
-        <form className="profile__form">
+        <form className="profile__form" onSubmit={onPrevSubmit}>
           <label className="profile__label profile_font-weight_500">
             Имя
-            <imput
+            <input
               className="profile__input"
               type="text"
               minLength="2"
               maxLength="20"
               required
-            >
-              {name}
-            </imput>
+              value={name}
+              disabled
+            />
           </label>
           <label className="profile__label profile_font-weight_500">
             E-mail
-            <imput
+            <input
               className="profile__input"
               type="email"
               minLength="5"
               maxLength="30"
               required
-            >{email}</imput>
+              value={email}
+              disabled
+            />
           </label>
           <ul className="profile__buttons">
             <li>
-              <button className="profile__button opacity" type="submit">Редактировать</button>
+              <button className="profile__button opacity" type="submit">
+                Редактировать
+              </button>
             </li>
             <li>
               <Link

@@ -13,11 +13,16 @@
 @media (max-width: 1050px) {
   .card-list__table { 
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 35px;
+    row-gap: 36px;
   }
 }
 
 @media (max-width: 800px) {
+  .card-list__container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
   .card-list__table { 
     padding-bottom: 30px;
   }
@@ -26,5 +31,22 @@
 @media (max-width: 700px) {
   .card-list__table { 
     grid-template-columns: repeat(1, 1fr);
+    padding-top: 36px;
+    gap: 8px;
   }
 }
+
+@media (max-width: 420px) {
+  .card-list__container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .card-list__table { 
+    gap: 8px;
+  }
+
+  .card__button {
+    margin-top: 13px;
+  }
+}  
