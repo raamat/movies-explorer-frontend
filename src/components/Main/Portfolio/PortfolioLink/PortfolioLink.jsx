@@ -1,5 +1,4 @@
 import "./PortfolioLink.css";
-import linkArrow from "../../../../images/link-arrow.svg";
 
 export default function PortfolioLink({ link, text }) {
   return (
@@ -10,12 +9,6 @@ export default function PortfolioLink({ link, text }) {
       rel="noopener noreferrer"
     >
       {text}
-      <img
-        className="link-arrow "
-        src={linkArrow}
-        alt="Ссылка на пункт портфолио"
-        target="_blank"
-      />
     </a>
   );
 }

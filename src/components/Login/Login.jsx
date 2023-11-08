@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Logo from "../../images/logo.svg";
+import FormInput from "../FormInput/FormInput";
+import FormButton from "../FormButton/FormButton";
 
 export default function Login({ onSubmit }) {
   function onPrevSubmit(e) {
@@ -17,34 +19,30 @@ export default function Login({ onSubmit }) {
       </header>
       <main className="login__container">
         <h1 className="login__title">Рады видеть!</h1>
-        <form className="login__form" onSubmit={onPrevSubmit}>
-          <label className="login__label">
-            E-mail
-            <input
-              className="login__input"
-              type="email"
-              name="email"
-              id="email"
-              minLength="5"
-              maxLength="30"
-              required
-              value={"pochta@yandex.ru"}
-            />
-          </label>
-          <label className="login__label">
-            Пароль
-            <input
-              className="login__input"
-              type="password"
-              name="password"
-              id="password"
-              minLength="8"
-              required
-            />
-          </label>
-          <button className="login__button opacity" type="submit">
-            Войти
-          </button>
+        <form className="login__form" name="login" onSubmit={onPrevSubmit}>
+          <FormInput
+            label="E-mail"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+            minLength="5"
+            maxLength="30"
+            required
+            defaultValue={"pochta@yandex.ru"}
+          />
+          <FormInput
+            label="Пароль"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Пароль"
+            minLength="8"
+            required
+            defaultValue={"12345678"}
+          />
+          <div className="login__empty-block"></div>
+          <FormButton type="submit">Войти</FormButton>
         </form>
         <div className="login__links-block">
           <p className="login__text">Ещё не зарегистрированы?</p>

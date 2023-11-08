@@ -11,7 +11,7 @@ import Page404 from "../Page404/Page404";
 import "./App.css";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     isAuth,
   });

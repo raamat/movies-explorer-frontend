@@ -1,4 +1,4 @@
-.nav-out {
+.nav-out__list {
   list-style: none;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@
 }
 
 @media (max-width: 420px) {
-  .nav-out {
+  .nav-out__list {
     font-size: 10px;
   }
   .nav-out__link_type_green-button {

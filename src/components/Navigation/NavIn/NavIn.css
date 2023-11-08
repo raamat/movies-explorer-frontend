@@ -1,11 +1,11 @@
-.nav-in {
+.nav-in__list {
   list-style: none;
   display: flex;
   align-items: center;
   margin: 0;
   font-size: 14px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
   column-gap: 20px;
 }
@@ -17,8 +17,8 @@
   color: #fff;
 }
 
-.nav-in__link_font-weight_400 {
-  font-weight: 400;
+.nav-in__link__active {
+  font-weight: 500;
 }
 
 .nav-in__link_type_button {
@@ -28,6 +28,7 @@
   height: 32px;
   margin-left: 30px;
   line-height: 16px;
+  font-weight: 500;
 }
 
 .nav-in__button-account {
@@ -54,7 +55,7 @@
 }
 
 @media (max-width: 800px) {
-  .nav-in {
+  .nav-in__list {
     display: none;
   }
 
@@ -64,7 +65,7 @@
 }
 
 @media (max-width: 420px) {
-  .nav-in {
+  .nav-in__list {
     font-size: 10px;
   }
   .nav-in__link_type_green-button {

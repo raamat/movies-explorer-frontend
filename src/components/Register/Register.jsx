@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Register.css";
 import Logo from "../../images/logo.svg";
+import FormInput from "../FormInput/FormInput";
+import FormButton from "../FormButton/FormButton";
 
 export default function Register({ onSubmit }) {
   function onPrevSubmit(e) {
@@ -18,49 +20,42 @@ export default function Register({ onSubmit }) {
       </header>
       <main className="register__container">
         <h1 className="register__title">Добро пожаловать!</h1>
-        <form className="register__form" onSubmit={onPrevSubmit}>
-          <label className="register__label">
-            Имя
-            <input
-              className="register__input"
-              type="text"
-              name="name"
-              id="name"
-              minLength="5"
-              maxLength="30"
-              required
-              value={"Виталий"}
-            />
-          </label>
-          <label className="register__label">
-            E-mail
-            <input
-              className="register__input"
-              type="email"
-              name="email"
-              id="email"
-              minLength="5"
-              maxLength="30"
-              required
-              value={"pochta@yandex.ru"}
-            />
-          </label>
-          <label className="register__label">
-            Пароль
-            <input
-              className="register__input register_color_red"
-              type="password"
-              name="password"
-              id="password"
-              minLength="8"
-              required
-              value={"12345678"}
-            />
-            <p className="register__message register_color_red ">Что-то пошло не так...</p>
-          </label>
-          <button className="register__button opacity" type="submit">
-            Зарегистрироваться
-          </button>
+        <form className="register__form" name="register" onSubmit={onPrevSubmit}>
+          <FormInput
+            label="Имя"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Имя"
+            minLength="5"
+            maxLength="30"
+            required
+            defaultValue={"Виталий"}
+          />
+          <FormInput
+            label="Почта"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+            minLength="5"
+            maxLength="30"
+            required
+            defaultValue={"pochta@yandex.ru"}
+          />
+          <FormInput
+            label="Пароль"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Пароль"
+            minLength="8"
+            required
+            defaultValue={"12345678"}
+            errorMessage={"Что-то пошло не так..."}
+          />
+
+          <FormButton type="submit">Зарегистрироваться</FormButton>
         </form>
         <div className="register__links-block">
           <p className="register__text">Уже зарегистрированы?</p>

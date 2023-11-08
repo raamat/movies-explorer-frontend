@@ -8,7 +8,7 @@ export default function BurgerMenu({ isBurgerOpen, onBurgerClose }) {
   // const isBurgerOpen = useContext(CurrentUserContext).isBurgerOpen;
   return (
     <div className={`burger-menu${isBurgerOpen ? " burger-menu_opened" : ""}`}>
-      <main className="burger-menu__container">
+      <nav className="burger-menu__container">
         <button className="burger-menu__close-button opacity" onClick={onBurgerClose}></button>
         <ul className="burger-menu__links">
           <li className="burger-menu__item">
@@ -30,7 +30,7 @@ export default function BurgerMenu({ isBurgerOpen, onBurgerClose }) {
         <Link className="burger-menu__button opacity" to="/profile">
           Аккаунт
         </Link>
-      </main>
+      </nav>
     </div>
   );
 }

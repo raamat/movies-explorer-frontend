@@ -12,7 +12,7 @@ export default function Movies() {
       <Header />
       <main className="movies">
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList cards={new Array(12).fill(false).map((_, index) => index % 2 === 0)} />
         <MoreButton />
       </main>
       <Footer />

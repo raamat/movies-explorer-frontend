@@ -3,23 +3,14 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 import "./MoviesCardList.css";
 
-export default function MoviesCardList() {
+export default function MoviesCardList({ cards }) {
   return (
-   <Section classNameSection="card-list">
-     <div className="card-list__table">
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-       <div><MoviesCard/></div>
-     </div>
-   </Section>
+    <Section classNameSection="card-list">
+      <div className="card-list__table">
+        {cards.map((card, index) => (
+          <MoviesCard key={index} isLike={card} />
+        ))}
+      </div>
+    </Section>
   );
 }

@@ -1,7 +1,7 @@
 import Section from "../../Section/Section";
 
 import "./Promo.css";
-import promoLogo from "../../../images/promo-logo.svg";
+import promoLogo from "../../../images/promo-logo.png";
 
 export default function Promo() {
   return (

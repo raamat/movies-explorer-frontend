@@ -11,7 +11,7 @@ export default function SavedMovies() {
       <Header />
       <main className="saved-movies">
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList cards={new Array(3).fill(true)} />
         <div className="empty-block"></div>
       </main>
       <Footer />

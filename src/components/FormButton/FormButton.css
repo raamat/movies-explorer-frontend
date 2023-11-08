@@ -1,0 +1,21 @@
+.form-button {
+  border-radius: 3px;
+  background: #4285f4;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 45px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 111px;
+}
+
+@media (max-width: 420px) {
+  .form-button {
+    font-size: 12px;
+    margin-top: 200px;
+  }
+}

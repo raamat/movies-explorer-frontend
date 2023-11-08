@@ -16,7 +16,9 @@ export default function FilterCheckbox({ isChecked, onChecked }) {
       >
         <span className={`filter-checkbox__button`} />
       </label>
-      <p className="filter-checkbox__text">Короткометражки</p>
+      <label htmlFor="filter-checkbox-new" className="filter-checkbox__text">
+        Короткометражки
+      </label>
     </div>
   );
 }

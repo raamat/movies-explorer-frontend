@@ -1,0 +1,41 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #8b8b8b;
+}
+
+.form-input__input {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 5px 0 10px;
+  min-height: 17px;
+  border: none;
+  border-bottom: 1px solid #424242;
+  color: #fff;
+  background: transparent;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input__input:focus {
+  border-bottom: 1px solid #4285f4;
+}
+
+.form-input__message {
+  margin: 0;
+  padding-top: 5px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form-input_color_red {
+  color: #ee3465;
+}

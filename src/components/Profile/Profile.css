@@ -73,9 +73,10 @@
   border: none;
   text-decoration: none;
   cursor: pointer;
+  font-weight: 500;
 }
 
-.profile_font-weight_500 {
+.profile__label_active {
   font-weight: 500;
 }
 
