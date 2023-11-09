@@ -1,0 +1,13 @@
+.footer__link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: normal;
+}
+
+@media (max-width: 420px) {
+  .footer__link {
+    font-size: 12px;
+  }
+}
