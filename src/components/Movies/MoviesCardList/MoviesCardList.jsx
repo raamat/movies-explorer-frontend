@@ -8,7 +8,7 @@ export default function MoviesCardList({ cards }) {
     <Section classNameSection="card-list">
       <div className="card-list__table">
         {cards.map((card, index) => (
-          <MoviesCard key={index} isLike={card} />
+          <MoviesCard key={index} isLike={card} card={card} />
         ))}
       </div>
     </Section>
