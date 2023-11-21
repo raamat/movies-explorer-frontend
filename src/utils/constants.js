@@ -1,3 +1,6 @@
+export const SCREEN_800 = 800;
+
+
 const arrMovies = [
   {
     nameRU: "Роллинг Стоунз» в изгнании",

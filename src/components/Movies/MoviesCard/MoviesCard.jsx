@@ -14,11 +14,13 @@ export default function MoviesCard({ isLike, card }) {
           {Math.floor(card.duration / 60)}ч {card.duration % 60}м{" "}
         </div>
       </div>
-      <img
-        className="card__image"
-        src={apiURL + card.image.url}
-        alt={card.nameRU}
-      ></img>
+      <a className="card__trailer-link" href={card.trailerLink} target="_blank" rel="noreferrer">
+        <img
+          className="card__image"
+          src={apiURL + card.image.url}
+          alt={card.nameRU}
+        ></img>
+      </a>
       <button
         className={
           cardLike

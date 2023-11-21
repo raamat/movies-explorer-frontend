@@ -7,6 +7,7 @@ export default function FilterCheckbox({ isChecked, onChecked }) {
         className="filter-checkbox__input"
         id={`filter-checkbox-new`}
         type="checkbox"
+        placeholder="Фильм"
         value={isChecked}
         onChange={() => onChecked(!isChecked)}
       />
