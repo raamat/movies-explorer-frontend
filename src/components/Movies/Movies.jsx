@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useCount from "../../hooks/useCount";
 import useStorage from "../../hooks/useStorage";
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm";
@@ -14,6 +15,24 @@ export default function Movies() {
   const [cards, setCards] = useState([]);
   const [searchValue, setSearchValue] = useStorage('searchValue', "");
 
+  const [countCards, setCountCards] = useState({});
+
+  // Получаем объект из двух элементов: 
+  //   showCards - количество карточек для отображения
+  //   addCards - количество карточек добавляемых при клике на кнопку "Ещё"
+  const cardsObject = useCount();
+
+  useEffect(() => {
+    setCountCards(cardsObject.showCards)
+      console.log(countCards)
+  }, [countCards, cardsObject])
+
+  function handleMoreButton() {
+    cardsObject.showCards = cardsObject.showCards + cardsObject.addCards;
+    setCountCards(cardsObject.showCards);
+    console.log("Карточка добавлена");
+  }
+
   useEffect(() => {
     getMoviesCard().then((data) => {
       setCards(data);
@@ -26,8 +45,8 @@ export default function Movies() {
       <Header />
       <main className="movies">
         <SearchForm searchValue={searchValue} setSearchValue={setSearchValue} />
-        <MoviesCardList cards={cards} />
-        <MoreButton />
+        <MoviesCardList cards={cards} showCards={countCards}/>
+        <MoreButton onClick={handleMoreButton}/>
       </main>
       <Footer />
     </>

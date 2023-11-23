@@ -7,7 +7,7 @@ export default function useWidth() {
     function handlerWindowWidth() {
       // setTimeout - чтобы колбэк-функция слушателя не срабатывала слишком часто, 
       // например при изменении ширины экрана в отладчике
-      setTimeout(() => setWindowWidth(window.innerWidth), 500);
+      setTimeout(() => setWindowWidth(window.innerWidth), 300);
     }
     window.addEventListener("resize", handlerWindowWidth);
 

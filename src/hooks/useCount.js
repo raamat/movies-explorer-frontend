@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
 import useWidth from "./useWidth";
 
+import {
+  SCREEN_WIDTH_DESKTOP,
+  SCREEN_WIDTH_MOBILE,
+  CARDS_TABLE_DESKTOP,
+  CARDS_TABLE_TABLET,
+  CARDS_TABLE_MOBILE,
+} from "../utils/constants";
+
 export default function useCount() {
-  const [count, setCount] = useState(12);
+  const [count, setCount] = useState(CARDS_TABLE_DESKTOP);
 
   const width = useWidth();
 
   useEffect(() => {
-    if (width > 1050) {
-      setCount(12);
-    } else if ((width <= 1050) & (width > 700)) {
-      setCount(8);
-    } else if (width <= 700) {
-      setCount(5);
+    if (width > SCREEN_WIDTH_DESKTOP) {
+      setCount(CARDS_TABLE_DESKTOP);
+    } else if (
+      (width <= SCREEN_WIDTH_DESKTOP) &
+      (width > SCREEN_WIDTH_MOBILE)
+    ) {
+      setCount(CARDS_TABLE_TABLET);
+    } else if (width <= SCREEN_WIDTH_MOBILE) {
+      setCount(CARDS_TABLE_MOBILE);
     }
   }, [width]);
 
