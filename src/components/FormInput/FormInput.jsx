@@ -7,8 +7,9 @@ export default function FormInput({
   id,
   placeholder,
   minLength,
+  maxLength,
   required,
-  defaultValue,
+  value,
   errorMessage,
   onChange,
 }) {
@@ -22,12 +23,13 @@ export default function FormInput({
         id={id}
         placeholder={placeholder}
         minLength={minLength}
+        maxLength={maxLength}
         required={required}
-        defaultValue={defaultValue}
+        value={value}
         onChange={onChange}
       />
-      {!!errorMessage && (
-        <p className="form-input__message form-input_color_red ">{errorMessage}</p>
+      {errorMessage && (
+        <span className="form-input__message form-input_color_red ">{errorMessage}</span>
       )}
     </label>
   );

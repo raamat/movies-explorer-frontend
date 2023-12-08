@@ -5,11 +5,12 @@ import Logo from "../../images/logo.svg";
 import FormInput from "../FormInput/FormInput";
 import FormButton from "../FormButton/FormButton";
 
-export default function Login({ onSubmit }) {
+export default function Login({ onSubmit, setIsLoggedIn }) {
   function onPrevSubmit(e) {
     e.preventDefault();
     onSubmit?.();
   }
+
   return (
     <div className="login">
       <header className="login__header opacity">
@@ -42,7 +43,7 @@ export default function Login({ onSubmit }) {
             defaultValue={"12345678"}
           />
           <div className="login__empty-block"></div>
-          <FormButton type="submit">Войти</FormButton>
+          <FormButton type="submit" setIsLoggedIn={setIsLoggedIn}>Войти</FormButton>
         </form>
         <div className="login__links-block">
           <p className="login__text">Ещё не зарегистрированы?</p>

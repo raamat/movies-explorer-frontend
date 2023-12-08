@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useLocalStorage } from "../../hooks/useStorage";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Main from "../Main/Main";
 import Register from "../Register/Register";
@@ -11,22 +12,73 @@ import Page404 from "../Page404/Page404";
 import "./App.css";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
-  const [currentUser, setCurrentUser] = useState({
-    isAuth,
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useLocalStorage("token", "");
+
+  useEffect(() => {
+    if (token) {setIsLoggedIn(true)}
+  }, [token])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <BrowserRouter>
         <div className="App">
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
+            <Route
+              path="/signup"
+              element={
+                !isLoggedIn ? (
+                  <Register setIsLoggedIn={setIsLoggedIn} setToken={setToken} />
+                ) : (
+                  <Movies isLoggedIn={isLoggedIn} />
+                )
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                !isLoggedIn ? (
+                  <Login setIsLoggedIn={setIsLoggedIn} />
+                ) : (
+                  <Movies isLoggedIn={isLoggedIn} />
+                )
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                isLoggedIn ? (
+                  <Profile
+                    setToken={setToken}
+                    isLoggedIn={isLoggedIn}
+                  />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            <Route
+              path="/movies"
+              element={
+                isLoggedIn ? (
+                  <Movies isLoggedIn={isLoggedIn} />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                isLoggedIn ? (
+                  <SavedMovies isLoggedIn={isLoggedIn} />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </div>

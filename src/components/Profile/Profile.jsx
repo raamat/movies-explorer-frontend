@@ -7,16 +7,22 @@ import FormButton from "../FormButton/FormButton";
 const name = "Виталий";
 const email = "pochta@yandex.ru";
 
-export default function Profile({ onSubmit }) {
+export default function Profile({ onSubmit, setToken, isLoggedIn }) {
   const [isEdited, setIsEdited] = useState(false);
+
   function onPrevSubmit(e) {
     e.preventDefault();
     setIsEdited(!isEdited);
     onSubmit?.();
   }
+
+  function handleExitClick() {
+    setToken("");
+  }
+
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} />
       <main className="profile">
         <h1 className="profile__title">Привет, {name}!</h1>
         <form className="profile__form" name="profile" onSubmit={onPrevSubmit}>
@@ -64,7 +70,10 @@ export default function Profile({ onSubmit }) {
                 </button>
               </li>
               <li className="profile__buttons-item">
-                <Link className="profile__button opacity profile_font-color_red" to="/">
+                <Link
+                  className="profile__button opacity profile_font-color_red"
+                  onClick={() => handleExitClick()}
+                >
                   Выйти из аккаунта
                 </Link>
               </li>

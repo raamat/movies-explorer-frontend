@@ -5,10 +5,10 @@ import Footer from "../Footer/Footer";
 
 import "./SavedMovies.css";
 
-export default function SavedMovies() {
+export default function SavedMovies({ isLoggedIn }) {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn}/>
       <main className="saved-movies">
         <SearchForm />
         <MoviesCardList cards={new Array(3).fill(true)} />
