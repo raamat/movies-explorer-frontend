@@ -6,7 +6,6 @@ export default function FormButton({ children, isFormValid }) {
       className={
         isFormValid ? "form-button form-button_activ opacity" : "form-button"
       }
-      // disabled={isFormValid}
       type="submit"
     >
       {children}

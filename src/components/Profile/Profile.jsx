@@ -18,6 +18,7 @@ export default function Profile({ onSubmit, setToken, isLoggedIn }) {
 
   function handleExitClick() {
     setToken("");
+    // navigate("/");
   }
 
   return (

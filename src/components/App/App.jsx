@@ -12,12 +12,12 @@ import Page404 from "../Page404/Page404";
 import "./App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useLocalStorage("token", "");
 
   useEffect(() => {
-    if (token) {setIsLoggedIn(true)}
+    token ? (setIsLoggedIn(true)) : (setIsLoggedIn(false))
   }, [token])
 
   return (
@@ -40,7 +40,7 @@ function App() {
               path="/signin"
               element={
                 !isLoggedIn ? (
-                  <Login setIsLoggedIn={setIsLoggedIn} />
+                  <Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>
                 ) : (
                   <Movies isLoggedIn={isLoggedIn} />
                 )

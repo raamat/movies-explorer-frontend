@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 import FormInput from "../FormInput/FormInput";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import FormButton from "../FormButton/FormButton";
 import { signUpRequest, signInRequest } from "../../utils/MainApi";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
@@ -96,7 +97,7 @@ export default function Register({ setIsLoggedIn, setToken }) {
             onChange={handleChange}
             errorMessage={errors.password}
           />
-          <span className="error-message">{errorMessage}</span>
+          <ErrorMessage>{errorMessage}</ErrorMessage>
           <FormButton isFormValid={isFormValid}>Зарегистрироваться</FormButton>
         </form>
         <div className="register__links-block">
