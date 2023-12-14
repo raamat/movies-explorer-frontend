@@ -27,7 +27,7 @@ export function signUpRequest({ name, email, password }) {
 
 export function getUserRequest() {
   return fetchRequest({
-    url: `${baseUrl}/users/me`,
+    url: `${baseUrl}/users/me/`,
     method: "GET",
     isAuthRequired: true,
   });

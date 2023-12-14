@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 import FormInput from "../FormInput/FormInput";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Spacer from "../Spacer/Spacer";
+import Message from "../Message/Message";
 import FormButton from "../FormButton/FormButton";
 import { signInRequest } from "../../utils/MainApi";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
@@ -38,7 +39,7 @@ export default function Login({ setIsLoggedIn, setToken }) {
           console.log(err);
         }
       }
-    }  
+    }
   }
 
   return (
@@ -78,8 +79,8 @@ export default function Login({ setIsLoggedIn, setToken }) {
             onChange={handleChange}
             errorMessage={errors.password}
           />
-          <div className="login__empty-block"></div>
-          <ErrorMessage>{errorMessage}</ErrorMessage>
+          <Spacer size={130} mobile={219}/>
+          <Message>{errorMessage}</Message>
           <FormButton isFormValid={isFormValid}>Войти</FormButton>
         </form>
         <div className="login__links-block">

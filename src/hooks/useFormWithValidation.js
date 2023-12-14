@@ -1,11 +1,11 @@
-import { useCallback, useState } from "react";
-
+import { useState, useCallback } from "react";
 // хук управления формой и валидации формы
 // если форма валидна, isFormValid = true
 export default function useFormWithValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+  // const [isDataChanged, setIsDataChanged] = useState(false);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -14,6 +14,7 @@ export default function useFormWithValidation() {
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsFormValid(target.closest("form").checkValidity());
+    
   };
 
   const resetForm = useCallback(

@@ -49,10 +49,6 @@
   color: #4285f4;
 }
 
-.login__empty-block {
-  padding-top: 62px;
-}
-
 @media (max-width: 800px) {
   .login {
     padding-top: 232px;

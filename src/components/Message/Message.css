@@ -1,0 +1,14 @@
+.message {
+  color: #EE3465;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  min-height: 19px;
+}
+
+.message_color_green {
+  color: #3DDC84;
+}

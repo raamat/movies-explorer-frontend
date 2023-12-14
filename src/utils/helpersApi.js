@@ -4,7 +4,7 @@ export default function fetchRequest({ url, method, json, isAuthRequired }) {
     headers: {},
   };
   if (isAuthRequired) {
-    options.headers["Authorization"] = `Bearer ${getToken()}`;
+    options.headers["Authorization"] = `Bearer ${getToken().replaceAll('"', '')}`;
   }
   if (json) {
     options.headers["Content-Type"] = "application/json";
@@ -15,13 +15,9 @@ export default function fetchRequest({ url, method, json, isAuthRequired }) {
 
 function checkForErrors(response) {
   return response.ok ? response.json() : Promise.reject(`Ошибка: ${response.status}`);
-/*
-  if (response.ok) {
-    return response.json();
-  }
-  throw new Error(response.status);*/
 }
 
 function getToken() {
   return localStorage.getItem("token");
 }
+

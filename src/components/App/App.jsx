@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useStorage";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { getUserRequest } from "../../utils/MainApi";
 import Main from "../Main/Main";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -14,14 +15,35 @@ import "./App.css";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [token, setToken] = useLocalStorage("token", "");
+  const [token, setToken, removeToken] = useLocalStorage("token", "");
 
   useEffect(() => {
-    token ? (setIsLoggedIn(true)) : (setIsLoggedIn(false))
-  }, [token])
+    if (isLoggedIn) {
+      async function fetchData() {
+        try {
+          const data = await getUserRequest();
+          setCurrentUser(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchData();
+    }
+  }, [isLoggedIn]);
+
+  function clearLocalStorageAndStates() {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    removeToken();
+  }
+
+  useEffect(() => {
+    token ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }, [token]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <BrowserRouter>
         <div className="App">
           <Routes>
@@ -40,7 +62,11 @@ function App() {
               path="/signin"
               element={
                 !isLoggedIn ? (
-                  <Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>
+                  <Login
+                    setIsLoggedIn={setIsLoggedIn}
+                    setToken={setToken}
+                    setCurrentUser={setCurrentUser}
+                  />
                 ) : (
                   <Movies isLoggedIn={isLoggedIn} />
                 )
@@ -51,8 +77,8 @@ function App() {
               element={
                 isLoggedIn ? (
                   <Profile
-                    setToken={setToken}
                     isLoggedIn={isLoggedIn}
+                    clearLocalStorageAndStates={clearLocalStorageAndStates}
                   />
                 ) : (
                   <Navigate to="/" />

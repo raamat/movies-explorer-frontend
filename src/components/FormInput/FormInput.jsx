@@ -17,7 +17,7 @@ export default function FormInput({
     <label htmlFor={id} className="form-input">
       {label}
       <input
-        className={`form-input__input${!!errorMessage ? " form-input_color_red" : ""}`}
+        className={`form-input__input${!errorMessage ? " form-input_color_red" : ""}`}
         type={type}
         name={name}
         id={id}
@@ -29,7 +29,7 @@ export default function FormInput({
         onChange={onChange}
       />
       {errorMessage && (
-        <span className="form-input__message form-input_color_red ">{errorMessage}</span>
+        <span className="form-input__message">{errorMessage}</span>
       )}
     </label>
   );
