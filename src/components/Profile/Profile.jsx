@@ -16,22 +16,21 @@ export default function Profile({ isLoggedIn, clearLocalStorageAndStates }) {
   const [message, setMessage] = useState("");
 
   const { values, handleChange, errors, isFormValid } = useFormWithValidation();
-  
 
-  const { name=currentUser.name, email=currentUser.email } = values;
-  console.log(name, email);
-  console.log(currentUser.name, currentUser.email);
+  const { name = currentUser.name, email = currentUser.email } = values;
 
   useEffect(() => {
     setMessage("");
-    if ((name !== undefined && name !== currentUser.name) || (email !== undefined && email !== currentUser.email)) {
+    if (
+      (name !== undefined && name !== currentUser.name) ||
+      (email !== undefined && email !== currentUser.email)
+    ) {
       setIsInputChanged(true);
     } else setIsInputChanged(false);
   }, [values]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(name, email);
     if (isFormValid && isInputChanged) {
       try {
         const data = await updateUserRequest({ name, email });

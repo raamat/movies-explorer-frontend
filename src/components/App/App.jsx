@@ -12,8 +12,8 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Page404 from "../Page404/Page404";
 import "./App.css";
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState();
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken, removeToken] = useLocalStorage("token", "");
 
@@ -25,6 +25,7 @@ function App() {
           setCurrentUser(data);
         } catch (err) {
           console.log(err);
+        } finally {
         }
       }
       fetchData();
@@ -43,74 +44,79 @@ function App() {
   }, [token]);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <BrowserRouter>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
-            <Route
-              path="/signup"
-              element={
-                !isLoggedIn ? (
-                  <Register setIsLoggedIn={setIsLoggedIn} setToken={setToken} />
-                ) : (
-                  <Movies isLoggedIn={isLoggedIn} />
-                )
-              }
-            />
-            <Route
-              path="/signin"
-              element={
-                !isLoggedIn ? (
-                  <Login
-                    setIsLoggedIn={setIsLoggedIn}
-                    setToken={setToken}
-                    setCurrentUser={setCurrentUser}
-                  />
-                ) : (
-                  <Movies isLoggedIn={isLoggedIn} />
-                )
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                isLoggedIn ? (
-                  <Profile
-                    isLoggedIn={isLoggedIn}
-                    clearLocalStorageAndStates={clearLocalStorageAndStates}
-                  />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route
-              path="/movies"
-              element={
-                isLoggedIn ? (
-                  <Movies isLoggedIn={isLoggedIn} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route
-              path="/saved-movies"
-              element={
-                isLoggedIn ? (
-                  <SavedMovies isLoggedIn={isLoggedIn} />
-                ) : (
-                  <Navigate to="/" />
-                )
-              }
-            />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </CurrentUserContext.Provider>
+    <div className="page">
+      {isLoggedIn !== undefined && (
+        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <BrowserRouter>
+            <div className="App">
+              <Routes>
+                <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
+                <Route
+                  path="/signup"
+                  element={
+                    !isLoggedIn ? (
+                      <Register
+                        setIsLoggedIn={setIsLoggedIn}
+                        setToken={setToken}
+                      />
+                    ) : (
+                      <Movies isLoggedIn={isLoggedIn} />
+                    )
+                  }
+                />
+                <Route
+                  path="/signin"
+                  element={
+                    !isLoggedIn ? (
+                      <Login
+                        setIsLoggedIn={setIsLoggedIn}
+                        setToken={setToken}
+                        setCurrentUser={setCurrentUser}
+                      />
+                    ) : (
+                      <Movies isLoggedIn={isLoggedIn} />
+                    )
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    isLoggedIn ? (
+                      <Profile
+                        isLoggedIn={isLoggedIn}
+                        clearLocalStorageAndStates={clearLocalStorageAndStates}
+                      />
+                    ) : (
+                      <Navigate to="/" />
+                    )
+                  }
+                />
+                <Route
+                  path="/movies"
+                  element={
+                    isLoggedIn ? (
+                      <Movies isLoggedIn={isLoggedIn} />
+                    ) : (
+                      <Navigate to="/" />
+                    )
+                  }
+                />
+                <Route
+                  path="/saved-movies"
+                  element={
+                    isLoggedIn ? (
+                      <SavedMovies isLoggedIn={isLoggedIn} />
+                    ) : (
+                      <Navigate to="/" />
+                    )
+                  }
+                />
+                <Route path="*" element={<Page404 />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </CurrentUserContext.Provider>
+      )}
+    </div>
   );
 }
-
-export default App;
