@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useCount from "../../hooks/useCount";
-// import useStorage from "../../hooks/useStor";
 import { useLocalStorage } from "../../hooks/useStorage";
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm";
@@ -16,14 +15,13 @@ import "./Movies.css";
 
 export default function Movies({ isLoggedIn }) {
   // const allMoviesFromStorage = localStorage.getItem('movies');
-  const [cards, setCards] = useState([]);
+  // const [isChecked, setIsChecked] = useState();
   const [searchValue, setSearchValue] = useLocalStorage("searchValue", "");
   const [isChecked, setIsChecked] = useLocalStorage("isChecked", false);
-  // const [isChecked, setIsChecked] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSearchValid, setIsSearchValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [countCards, setCountCards] = useState({});
-  const [searhMovies, setSearchMovies] = useLocalStorage("searhMovies", []);
+  const [allMovies, setAllMovies] = useLocalStorage("allMovies", []);
+  const [searchMovies, setSearchMovies] = useLocalStorage("searchMovies", []);
 
   // При помощи пользовательского хука useCount получаем объект из двух элементов:
   //   showCards - количество карточек для отображения
@@ -35,10 +33,10 @@ export default function Movies({ isLoggedIn }) {
     else return DURATION_SHORT_MOVIES * 10;
   }
 
-  // При помощи функции searhMovies найдем фильмы, и вслучае, если массив буден не пустой,
-  // сохраним в стейт-переменной searhMovies и localStorage
+  // При помощи функции searchMovies найдем фильмы, и вслучае, если массив буден не пустой,
+  // сохраним в стейт-переменной searchMovies и localStorage
   function filterMovies() {
-    return cards
+    return allMovies
       .filter((movie, index) => movie.duration <= toggleDurationMovies())
       .filter((item, index) => index < cardsObject.showCards)
       .filter((movie, index) =>
@@ -60,14 +58,20 @@ export default function Movies({ isLoggedIn }) {
     setCountCards(cardsObject.showCards);
   }
 
-  useEffect(() => {
-    getMoviesCard()
-      .then((data) => {
-        localStorage.setItem("allMovies", JSON.stringify(data));
-        setCards(JSON.parse(localStorage.getItem("allMovies")));
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
+  async function handleButtonSubmit() {
+    try {
+      console.log("Запрос полетел");
+      setIsLoading(true);
+      // Данные надо брать из локального хранилища?
+      const data = await getMoviesCard();
+      setAllMovies(data);
+      console.log("Запрос прилетел!!!");
+    } catch {
+      console.log("Ошибка");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
@@ -76,19 +80,22 @@ export default function Movies({ isLoggedIn }) {
         <SearchForm
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          isChecked={isChecked}
-          setIsChecked={setIsChecked}
-          setIsSearchValid={setIsSearchValid}
-        />
-        <MoviesCardList
-          cards={cards}
+          handleButtonSubmit={handleButtonSubmit}
           isChecked={isChecked}
           isLoading={isLoading}
+          setIsChecked={setIsChecked}
+          setSearchMovies={setSearchMovies}
+        />
+        <MoviesCardList
+          allMovies={allMovies}
+          isChecked={isChecked}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
           searchValue={searchValue}
-          searhMovies={searhMovies}
+          searchMovies={searchMovies}
           showCards={countCards}
         />
-        {searchValue && <MoreButton onClick={handleMoreButton} />}
+        {searchMovies && <MoreButton onClick={handleMoreButton} />}
       </main>
       <Footer />
     </>

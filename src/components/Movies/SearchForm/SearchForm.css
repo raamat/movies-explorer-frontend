@@ -1,7 +1,7 @@
 .search-form__container {
   display: flex;
   flex-direction: column;
-  padding-top: 70px;
+  padding-top: 51px;
 }
 
 .search-form__block {
@@ -57,7 +57,7 @@
   .search-form__container {
     display: flex;
     flex-direction: column;
-    padding: 70px 14px 0;
+    padding: 51px 14px 0;
   }
 
   .search-form__input {

@@ -25,7 +25,6 @@ export default function App() {
           setCurrentUser(data);
         } catch (err) {
           console.log(err);
-        } finally {
         }
       }
       fetchData();

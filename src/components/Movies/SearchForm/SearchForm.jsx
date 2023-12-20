@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFormWithValidation from "../../../hooks/useFormWithValidation";
 import Section from "../../Section/Section";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
+import ErrorMessage from "../../Message/Message";
 
 import "./SearchForm.css";
 
@@ -8,44 +10,51 @@ export default function SearchForm({
   searchValue,
   setSearchValue,
   isChecked,
+  handleButtonSubmit,
   setIsChecked,
-  setIsSearchValid
+  setSearchMovies
 }) {
+  const { values, handleChange, isFormValid } = useFormWithValidation();
+  const [errorMessage, setErrorMessage] = useState("");
+  
+  useEffect(() => {
+    values.search = searchValue;
+  }, []);
 
-  const [inputError, setInputError] = useState(false);
+  useEffect(() => {
+    values.search && setErrorMessage("");
+  }, [values.search]);
 
   function handleFormSubmit(e) {
     e.preventDefault();
-  }
-
-  function OkInput() {
-    alert("Все ОК");
-    setIsSearchValid(searchValue);
-  }
-
-  function errorEmptyInput() {
-    alert("Нужно ввести ключевое слово");
+    if (isFormValid || values.search) {
+      setSearchMovies("");
+      handleButtonSubmit();
+      console.log(values.search);
+      setSearchValue(values.search);
+    } else {
+      setErrorMessage("Нужно ввести ключевое слово");
+    }
   }
 
   return (
     <Section classNameSection="search-form">
-      <form className="search-form__block" onSubmit={handleFormSubmit}>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
+      <form
+        className="search-form__block"
+        onSubmit={handleFormSubmit}
+        noValidate
+      >
         <input
           className="search-form__input"
           type="search"
-          value={searchValue}
-          // Сейчас информация из инпута сразу записывается в localStorage, даже если ничего на найдено
-          // Должна записываться только при непустом поиске?
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
+          name="search"
+          value={values.search}
+          onChange={handleChange}
           placeholder="Фильм"
+          required
         />
-        <button
-          className="search-form__button opacity"
-          type="submit"
-          onClick={searchValue ? OkInput : errorEmptyInput}
-        >
+        <button className="search-form__button opacity" type="submit">
           Поиск
         </button>
       </form>

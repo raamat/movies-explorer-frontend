@@ -1,11 +1,33 @@
 import { useState } from "react";
+import { useLocalStorage } from "../../../hooks/useStorage";
+import useArray from "../../../hooks/useArray";
 
 import "./MoviesCard.css";
 
 const apiURL = "https://api.nomoreparties.co/";
 
 export default function MoviesCard({ isLike, card }) {
-  const [cardLike, setCardLike] = useState(isLike);
+  const [cardLike, setCardLike] = useState(!isLike);
+  const [saveMovies, setSaveMovies] = useLocalStorage("saveMovies", []);
+  const {array, setArray, push, filter, update, remove, clear} = useArray([]);
+
+  /*
+
+  function push(element) {
+    setSaveMovies(a => [...a, element])
+}*/
+
+  //setSaveMovies("");
+  
+  function handleClick() {
+    setCardLike(!cardLike);
+    !cardLike ? console.log(`Карточка id: ${card.id} сохранена`) : console.log(`Карточка id: ${card.id} удалена`)
+    //!cardLike ? setSaveMovies(saveMovies => [...saveMovies, card]) : setSaveMovies("");
+    //setSaveMovies(oldValue  => [...oldValue, card]) 
+    //push(card);
+    //setSaveMovies(card);
+    //console.log(array.length)
+  }
   return (
     <div className="card">
       <div className="card__title-container">
@@ -27,7 +49,8 @@ export default function MoviesCard({ isLike, card }) {
             ? "card__button card__button_like opacity"
             : "card__button opacity"
         }
-        onClick={() => setCardLike(!cardLike)}
+        // onClick={() => setCardLike(!cardLike)}
+        onClick={handleClick}
       ></button>
     </div>
   );
