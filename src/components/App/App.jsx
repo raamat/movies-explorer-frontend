@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useStorage";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { getUserRequest } from "../../utils/MainApi";
+import {
+  getUserRequest,
+  saveMovieRequest,
+  getSavedMoviesRequest,
+} from "../../utils/MainApi";
 import Main from "../Main/Main";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -13,9 +17,10 @@ import Page404 from "../Page404/Page404";
 import "./App.css";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined); // Было до 08.01.2024 unefined, работало, но ошибка в консоли
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken, removeToken] = useLocalStorage("token", "");
+  const [savedMovies, setSavedMovies] = useLocalStorage("savedMovies", []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -31,9 +36,24 @@ export default function App() {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    if (isLoggedIn && savedMovies.length === 0) {
+      async function fetchData() {
+        try {
+          const movie = await getSavedMoviesRequest();
+          setSavedMovies(movie);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchData();
+    }
+  }, [isLoggedIn]);
+
   function clearLocalStorageAndStates() {
     localStorage.clear();
     setIsLoggedIn(false);
+    setSavedMovies([]);
     setCurrentUser({});
     removeToken();
   }
@@ -45,7 +65,9 @@ export default function App() {
   return (
     <div className="page">
       {isLoggedIn !== undefined && (
-        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <CurrentUserContext.Provider
+          value={{ currentUser, setCurrentUser, savedMovies, setSavedMovies }}
+        >
           <BrowserRouter>
             <div className="App">
               <Routes>
@@ -73,7 +95,11 @@ export default function App() {
                         setCurrentUser={setCurrentUser}
                       />
                     ) : (
-                      <Movies isLoggedIn={isLoggedIn} />
+                      <Movies
+                        isLoggedIn={isLoggedIn}
+                        savedMovies={savedMovies}
+                        setSavedMovies={setSavedMovies}
+                      />
                     )
                   }
                 />

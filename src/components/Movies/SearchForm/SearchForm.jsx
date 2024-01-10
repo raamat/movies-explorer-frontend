@@ -10,15 +10,15 @@ export default function SearchForm({
   searchValue,
   setSearchValue,
   isChecked,
-  handleButtonSubmit,
+  handleSearchButtonSubmit,
   setIsChecked,
-  setSearchMovies
 }) {
-  const { values, handleChange, isFormValid } = useFormWithValidation();
+  const { values, setValues, handleChange, isFormValid } =
+    useFormWithValidation();
   const [errorMessage, setErrorMessage] = useState("");
-  
+
   useEffect(() => {
-    values.search = searchValue;
+    setValues({ search: searchValue });
   }, []);
 
   useEffect(() => {
@@ -28,9 +28,7 @@ export default function SearchForm({
   function handleFormSubmit(e) {
     e.preventDefault();
     if (isFormValid || values.search) {
-      setSearchMovies("");
-      handleButtonSubmit();
-      console.log(values.search);
+      handleSearchButtonSubmit();
       setSearchValue(values.search);
     } else {
       setErrorMessage("Нужно ввести ключевое слово");

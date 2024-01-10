@@ -45,7 +45,7 @@ export function updateUserRequest({ name, email }) {
   });
 }
 
-export function getMoviesRequest() {
+export function getSavedMoviesRequest() {
   return fetchRequest({
     url: `${baseUrl}/movies`,
     method: "GET",

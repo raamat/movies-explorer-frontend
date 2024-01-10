@@ -12,13 +12,14 @@ import { DURATION_SHORT_MOVIES } from "../../../utils/constants";
 import "./MoviesCardList.css";
 
 export default function MoviesCardList({
-  allMovies,
+  movies,
   isChecked,
   isLoading,
   searchValue,
+  handleAddMovie
 }) {
   const filteredMovies = useFilter(
-    allMovies,
+    movies,
     searchValue,
     isChecked,
     DURATION_SHORT_MOVIES
@@ -40,6 +41,7 @@ export default function MoviesCardList({
                     key={index}
                     isLike={card}
                     card={card}
+                    handleAddMovie={handleAddMovie}
                   ></MoviesCard>
                 ))}
               </div>

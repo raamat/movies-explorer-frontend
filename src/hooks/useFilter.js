@@ -20,7 +20,6 @@ export default function useFilter(
     );
   }
 
-  //return isCheckedShortMovies ? findShortMovies() : findAllMovies();
   useEffect(() => {
     isCheckedShortMovies ? setArr(findShortMovies()) : setArr(findAllMovies());
   }, [allMovies, searchValue, isCheckedShortMovies, durationShortMovies]);

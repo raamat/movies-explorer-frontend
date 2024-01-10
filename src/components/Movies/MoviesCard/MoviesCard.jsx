@@ -1,33 +1,56 @@
-import { useState } from "react";
-import { useLocalStorage } from "../../../hooks/useStorage";
-import useArray from "../../../hooks/useArray";
-
+import { useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { saveMovieRequest, deleteMovieRequest } from "../../../utils/MainApi";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import "./MoviesCard.css";
 
 const apiURL = "https://api.nomoreparties.co/";
 
-export default function MoviesCard({ isLike, card }) {
-  const [cardLike, setCardLike] = useState(!isLike);
-  const [saveMovies, setSaveMovies] = useLocalStorage("saveMovies", []);
-  const {array, setArray, push, filter, update, remove, clear} = useArray([]);
+export default function MoviesCard({ card }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const { savedMovies, setSavedMovies } = useContext(CurrentUserContext);
+  const location = useLocation();
 
-  /*
+  useEffect(() => {
+    setIsLiked(savedMovies.some((movie) => movie.movieId === card.id));
+  }, [savedMovies, card]);
 
-  function push(element) {
-    setSaveMovies(a => [...a, element])
-}*/
-
-  //setSaveMovies("");
-  
-  function handleClick() {
-    setCardLike(!cardLike);
-    !cardLike ? console.log(`Карточка id: ${card.id} сохранена`) : console.log(`Карточка id: ${card.id} удалена`)
-    //!cardLike ? setSaveMovies(saveMovies => [...saveMovies, card]) : setSaveMovies("");
-    //setSaveMovies(oldValue  => [...oldValue, card]) 
-    //push(card);
-    //setSaveMovies(card);
-    //console.log(array.length)
+  async function handleAddMovie(card) {
+    const newCard = {
+      ...card,
+      image: `${apiURL + card.image.url}`,
+      thumbnail: `${apiURL + card.image.formats.thumbnail.url}`,
+      movieId: card.id,
+    };
+    try {
+      const data = await saveMovieRequest(newCard);
+      setSavedMovies([...savedMovies, data]);
+    } catch (err) {
+      console.log(err);
+    }
   }
+
+  async function handleDeleteMovie(card) {
+    try {
+      const movie = savedMovies.find(
+        (mv) => mv.movieId === card.id || mv._id === card._id
+      );
+      await deleteMovieRequest(movie._id);
+      setSavedMovies((cards) =>
+        cards.filter((savedMovies) => savedMovies._id !== movie._id)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function handleCardButtonClick(card) {
+    console.log(isLiked);
+    location.pathname === "/saved-movies" || isLiked
+      ? handleDeleteMovie(card)
+      : handleAddMovie(card);
+  }
+
   return (
     <div className="card">
       <div className="card__title-container">
@@ -36,21 +59,29 @@ export default function MoviesCard({ isLike, card }) {
           {Math.floor(card.duration / 60)}ч {card.duration % 60}м{" "}
         </div>
       </div>
-      <a className="card__trailer-link" href={card.trailerLink} target="_blank" rel="noreferrer">
+      <a
+        className="card__trailer-link"
+        href={card.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
         <img
           className="card__image"
-          src={apiURL + card.image.url}
+          src={`${
+            location.pathname === "/movies"
+              ? `${apiURL + card.image.url}`
+              : `${card.image}`
+          }`}
           alt={card.nameRU}
         ></img>
       </a>
       <button
         className={
-          cardLike
+          isLiked || location.pathname === "/saved-movies"
             ? "card__button card__button_like opacity"
             : "card__button opacity"
         }
-        // onClick={() => setCardLike(!cardLike)}
-        onClick={handleClick}
+        onClick={() => handleCardButtonClick(card)}
       ></button>
     </div>
   );

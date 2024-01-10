@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/logo.svg";
 import FormInput from "../FormInput/FormInput";
 import Spacer from "../Spacer/Spacer";
 import Message from "../Message/Message";
 import FormButton from "../FormButton/FormButton";
-import { signInRequest } from "../../utils/MainApi";
+import { signInRequest, getSavedMoviesRequest } from "../../utils/MainApi";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import { EMAIL_REGEXP } from "../../utils/constants";
 
@@ -16,6 +17,7 @@ export default function Login({ setIsLoggedIn, setToken }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { values, handleChange, errors, isFormValid } = useFormWithValidation();
   const navigate = useNavigate();
+  const { setSavedMovies } = useContext(CurrentUserContext);
 
   useEffect(() => {
     setErrorMessage("");
@@ -31,6 +33,10 @@ export default function Login({ setIsLoggedIn, setToken }) {
         setErrorMessage("");
         setIsLoggedIn(true);
         navigate("/movies");
+        // При удачном входе запросить сохраненные фильмы
+        //const movies = await getSavedMoviesRequest();
+        //setSavedMovies(movies);
+        //console.log(movies);
       } catch (err) {
         if (err === "Ошибка: 401") {
           setErrorMessage("Неверный логин или пароль");

@@ -10,7 +10,6 @@ export default function useSlice(arr) {
   useEffect(() => {
     setArray(arr.slice(0, showCards));
     setLastElement(showCards + addCards);
-    console.log("Отработал useEffect");
   }, [arr, showCards]);
 
   useEffect(() => {
