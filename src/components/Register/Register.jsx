@@ -16,6 +16,7 @@ export default function Register({ setIsLoggedIn, setToken }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { values, handleChange, errors, isFormValid } = useFormWithValidation();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setErrorMessage("");
@@ -24,8 +25,9 @@ export default function Register({ setIsLoggedIn, setToken }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = values;
-    if (isFormValid) {
+    if (isFormValid && !isLoading) {
       try {
+        setIsLoading(true);
         await signUpRequest({ name, email, password });
         const data = await signInRequest({ email, password });
         setToken(data.token);
@@ -39,6 +41,8 @@ export default function Register({ setIsLoggedIn, setToken }) {
           setErrorMessage(err);
           console.log(err);
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   }
@@ -99,8 +103,10 @@ export default function Register({ setIsLoggedIn, setToken }) {
             errorMessage={errors.password}
           />
           <ErrorMessage>{errorMessage}</ErrorMessage>
-          <Spacer size={44} mobile={121}/>
-          <FormButton isFormValid={isFormValid}>Зарегистрироваться</FormButton>
+          <Spacer size={44} mobile={121} />
+          <FormButton isFormValid={isFormValid} isLoading={isLoading}>
+            Зарегистрироваться
+          </FormButton>
         </form>
         <div className="register__links-block">
           <p className="register__text">Уже зарегистрированы?</p>

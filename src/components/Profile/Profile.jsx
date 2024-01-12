@@ -13,10 +13,9 @@ import "./Profile.css";
 export default function Profile({ isLoggedIn, clearLocalStorageAndStates }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [isInputChanged, setIsInputChanged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
-
   const { values, handleChange, errors, isFormValid } = useFormWithValidation();
-
   const { name = currentUser.name, email = currentUser.email } = values;
 
   useEffect(() => {
@@ -31,8 +30,9 @@ export default function Profile({ isLoggedIn, clearLocalStorageAndStates }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (isFormValid && isInputChanged) {
+    if (isFormValid && isInputChanged && !isLoading) {
       try {
+        setIsLoading(true);
         const data = await updateUserRequest({ name, email });
         setCurrentUser({ name, email });
         setMessage("Данные успешно обновлены");
@@ -45,6 +45,8 @@ export default function Profile({ isLoggedIn, clearLocalStorageAndStates }) {
           setMessage(err);
           console.log(err);
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   }
@@ -102,7 +104,7 @@ export default function Profile({ isLoggedIn, clearLocalStorageAndStates }) {
               <button
                 className="profile__button opacity"
                 type="submit"
-                disabled={!isInputChanged || !isFormValid}
+                disabled={!isInputChanged || !isFormValid || isLoading}
               >
                 Редактировать
               </button>

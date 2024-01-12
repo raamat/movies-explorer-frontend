@@ -5,7 +5,7 @@ import FormInput from "../FormInput/FormInput";
 import Spacer from "../Spacer/Spacer";
 import Message from "../Message/Message";
 import FormButton from "../FormButton/FormButton";
-import { signInRequest, getSavedMoviesRequest } from "../../utils/MainApi";
+import { signInRequest } from "../../utils/MainApi";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -17,7 +17,7 @@ export default function Login({ setIsLoggedIn, setToken }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { values, handleChange, errors, isFormValid } = useFormWithValidation();
   const navigate = useNavigate();
-  const { setSavedMovies } = useContext(CurrentUserContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setErrorMessage("");
@@ -26,8 +26,9 @@ export default function Login({ setIsLoggedIn, setToken }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = values;
-    if (isFormValid) {
+    if (isFormValid && !isLoading) {
       try {
+        setIsLoading(true);
         const data = await signInRequest({ email, password });
         setToken(data.token);
         setErrorMessage("");
@@ -40,6 +41,8 @@ export default function Login({ setIsLoggedIn, setToken }) {
           setErrorMessage(err);
           console.log(err);
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   }
@@ -81,7 +84,7 @@ export default function Login({ setIsLoggedIn, setToken }) {
             onChange={handleChange}
             errorMessage={errors.password}
           />
-          <Spacer size={130} mobile={219}/>
+          <Spacer size={130} mobile={219} />
           <Message>{errorMessage}</Message>
           <FormButton isFormValid={isFormValid}>Войти</FormButton>
         </form>
