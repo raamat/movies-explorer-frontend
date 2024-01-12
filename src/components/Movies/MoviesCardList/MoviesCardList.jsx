@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import useFilter from "../../../hooks/useFilter";
 import useSlice from "../../../hooks/useSlice";
 import Section from "../../Section/Section";
@@ -16,7 +18,7 @@ export default function MoviesCardList({
   isChecked,
   isLoading,
   searchValue,
-  handleAddMovie
+  handleAddMovie,
 }) {
   const filteredMovies = useFilter(
     movies,
@@ -25,7 +27,14 @@ export default function MoviesCardList({
     DURATION_SHORT_MOVIES
   );
 
-  const { array, handleClick, isButtonActive } = useSlice(filteredMovies);
+  const location = useLocation();
+  const { array: slicedMovies, handleClick, isButtonActive }  = useSlice(filteredMovies);
+  const [renderArr, setRenderArr] = useState([]);
+
+
+  useEffect(() => {
+    location.pathname === "/movies" ? setRenderArr(slicedMovies) : setRenderArr(filteredMovies)
+  }, [slicedMovies])
 
   return (
     <>
@@ -36,7 +45,7 @@ export default function MoviesCardList({
           ) : filteredMovies.length > 0 ? (
             <>
               <div className="card-list__table">
-                {array.map((card, index) => (
+                {renderArr.map((card, index) => (
                   <MoviesCard
                     key={index}
                     isLike={card}
@@ -55,7 +64,9 @@ export default function MoviesCardList({
           )}
         </Section>
       )}
-      {isButtonActive && <MoreButton onClick={handleClick}></MoreButton>}
+      {isButtonActive && location.pathname === "/movies" &&(
+        <MoreButton onClick={handleClick}></MoreButton>
+      )}
     </>
   );
 }

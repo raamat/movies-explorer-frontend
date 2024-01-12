@@ -1,6 +1,5 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "../../hooks/useStorage";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
@@ -14,21 +13,22 @@ export default function Movies({ isLoggedIn, handleAddMovie }) {
   const [searchValue, setSearchValue] = useLocalStorage("searchValue", "");
   const [isChecked, setIsChecked] = useLocalStorage("isChecked", false);
   const [isLoading, setIsLoading] = useState(false);
-  const [allMovies, setAllMovies] = useLocalStorage("allMovies", []);  
+  const [allMovies, setAllMovies] = useLocalStorage("allMovies", []);
 
   async function handleSearchButtonSubmit() {
     try {
       setIsLoading(true);
-      // Данные надо брать из локального хранилища?
-      const data = await getMoviesCard();
-      setAllMovies(data);
+      if (allMovies.length === 0) {
+        const data = await getMoviesCard();
+        setAllMovies(data);
+      }
     } catch {
       console.log("Ошибка");
     } finally {
       setIsLoading(false);
     }
   }
-  
+
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />

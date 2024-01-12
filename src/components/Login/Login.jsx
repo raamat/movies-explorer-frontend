@@ -33,10 +33,6 @@ export default function Login({ setIsLoggedIn, setToken }) {
         setErrorMessage("");
         setIsLoggedIn(true);
         navigate("/movies");
-        // При удачном входе запросить сохраненные фильмы
-        //const movies = await getSavedMoviesRequest();
-        //setSavedMovies(movies);
-        //console.log(movies);
       } catch (err) {
         if (err === "Ошибка: 401") {
           setErrorMessage("Неверный логин или пароль");

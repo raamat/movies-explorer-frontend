@@ -20,7 +20,7 @@ export default function SearchForm({
   useEffect(() => {
     setValues({ search: searchValue });
   }, []);
-
+  
   useEffect(() => {
     values.search && setErrorMessage("");
   }, [values.search]);
@@ -47,7 +47,7 @@ export default function SearchForm({
           className="search-form__input"
           type="search"
           name="search"
-          value={values.search}
+          value={values.search ? values.search : ''}
           onChange={handleChange}
           placeholder="Фильм"
           required

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useFilter(
-  allMovies,
+  movies,
   searchValue,
   isCheckedShortMovies,
   durationShortMovies
@@ -9,7 +9,7 @@ export default function useFilter(
   const [arr, setArr] = useState([]);
 
   function findAllMovies() {
-    return allMovies.filter((movie) =>
+    return movies.filter((movie) =>
       movie.nameRU.toLowerCase().includes(searchValue.toLowerCase())
     );
   }
@@ -22,7 +22,7 @@ export default function useFilter(
 
   useEffect(() => {
     isCheckedShortMovies ? setArr(findShortMovies()) : setArr(findAllMovies());
-  }, [allMovies, searchValue, isCheckedShortMovies, durationShortMovies]);
+  }, [movies, searchValue, isCheckedShortMovies, durationShortMovies]);
 
   return arr;
 }
