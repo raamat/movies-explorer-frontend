@@ -28,13 +28,20 @@ export default function MoviesCardList({
   );
 
   const location = useLocation();
-  const { array: slicedMovies, handleClick, isButtonActive }  = useSlice(filteredMovies);
+
+  const {
+    array: slicedMovies,
+    handleClick,
+    isButtonActive,
+  } = useSlice(filteredMovies);
+
   const [renderArr, setRenderArr] = useState([]);
 
-
   useEffect(() => {
-    location.pathname === "/movies" ? setRenderArr(slicedMovies) : setRenderArr(filteredMovies)
-  }, [slicedMovies])
+    location.pathname === "/movies"
+      ? setRenderArr(slicedMovies)
+      : setRenderArr(filteredMovies);
+  }, [slicedMovies]);
 
   return (
     <>
@@ -42,7 +49,7 @@ export default function MoviesCardList({
         <Section classNameSection="card-list">
           {isLoading ? (
             <Preloader />
-          ) : filteredMovies.length > 0 ? (
+          ) : renderArr.length > 0 ? (
             <>
               <div className="card-list__table">
                 {renderArr.map((card, index) => (
@@ -59,12 +66,11 @@ export default function MoviesCardList({
             <Message>
               <Spacer size={200} />
               Ничего не найдено
-              <Spacer size={150} />
             </Message>
           )}
         </Section>
       )}
-      {isButtonActive && location.pathname === "/movies" &&(
+      {isButtonActive && location.pathname === "/movies" && (
         <MoreButton onClick={handleClick}></MoreButton>
       )}
     </>

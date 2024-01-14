@@ -21,19 +21,13 @@ export default function SavedMovies({ isLoggedIn }) {
         const data = await getSavedMoviesRequest();
         setSavedMovies(data);
       }
-      if (searchValue === " ") {
-        setSearchValue('');
-        console.log("Посковая фраза состоит только из пробела ", '+',searchValue,"+")
-      }
-      searchValue.length > 1 && setSearchValue(searchValue.trim());
-      
     } catch {
       console.log("Ошибка");
     } finally {
       setIsLoading(false);
     }
   }
-  
+
   useEffect(() => {
     searchValue.length > 1 && setSearchValue(searchValue.trim());
   }, [searchValue]);
