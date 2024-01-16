@@ -8,3 +8,7 @@
 ## Ссылка на сайт
 
 [movies.raamat.pw](https://movies.raamat.pw/)
+
+## Ссылка на пул реквест
+
+[https://github.com/raamat/movies-explorer-frontend/pull/2](https://github.com/raamat/movies-explorer-frontend/pull/2)

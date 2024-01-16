@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <div className="page">
-      {isLoggedIn !==undefined && (
+      {isLoggedIn !== undefined && (
         <CurrentUserContext.Provider
           value={{ currentUser, setCurrentUser, savedMovies, setSavedMovies }}
         >
