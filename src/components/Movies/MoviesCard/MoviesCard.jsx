@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { saveMovieRequest, deleteMovieRequest } from "../../../utils/MainApi";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
@@ -7,13 +7,10 @@ import "./MoviesCard.css";
 const apiURL = "https://api.nomoreparties.co/";
 
 export default function MoviesCard({ card }) {
-  const [isLiked, setIsLiked] = useState(false);
   const { savedMovies, setSavedMovies } = useContext(CurrentUserContext);
   const location = useLocation();
 
-  useEffect(() => {
-    setIsLiked(savedMovies.some((movie) => movie.movieId === card.id));
-  }, [savedMovies, card]);
+  const isLiked = savedMovies.some((movie) => movie.movieId === card.id);
 
   async function handleAddMovie(card) {
     const newCard = {
@@ -45,7 +42,6 @@ export default function MoviesCard({ card }) {
   }
 
   function handleCardButtonClick(card) {
-    console.log(isLiked);
     location.pathname === "/saved-movies" || isLiked
       ? handleDeleteMovie(card)
       : handleAddMovie(card);
