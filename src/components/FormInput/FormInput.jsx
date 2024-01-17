@@ -12,12 +12,15 @@ export default function FormInput({
   value,
   errorMessage,
   onChange,
+  pattern,
 }) {
   return (
     <label htmlFor={id} className="form-input">
       {label}
       <input
-        className={`form-input__input${!errorMessage ? " form-input_color_red" : ""}`}
+        className={`form-input__input${
+          !errorMessage ? " form-input_color_red" : ""
+        }`}
         type={type}
         name={name}
         id={id}
@@ -27,6 +30,7 @@ export default function FormInput({
         required={required}
         value={value}
         onChange={onChange}
+        pattern={pattern}
       />
       {errorMessage && (
         <span className="form-input__message">{errorMessage}</span>
