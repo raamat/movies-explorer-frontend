@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useFormWithValidation from "../../../hooks/useFormWithValidation";
-import Section from "../../Section/Section";
+import useFormWithValidation from "../../hooks/useFormWithValidation";
+import Section from "../Section/Section";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
-import ErrorMessage from "../../Message/Message";
+import ErrorMessage from "../Message/Message";
 
 import "./SearchForm.css";
 

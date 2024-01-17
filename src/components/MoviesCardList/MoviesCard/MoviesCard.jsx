@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { saveMovieRequest, deleteMovieRequest } from "../../../utils/MainApi";
+import {
+  saveMovieRequest,
+  deleteMovieRequest,
+} from "../../../utils/MainApi";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import "./MoviesCard.css";
 

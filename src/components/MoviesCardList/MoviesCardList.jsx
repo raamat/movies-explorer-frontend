@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import useFilter from "../../../hooks/useFilter";
-import useSlice from "../../../hooks/useSlice";
-import Section from "../../Section/Section";
-import MoviesCard from "../MoviesCard/MoviesCard";
+import useFilter from "../../hooks/useFilter";
+import useSlice from "../../hooks/useSlice";
+import Section from "../Section/Section";
+import MoviesCard from "./MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
-import Message from "../../Message/Message";
-import Spacer from "../../Spacer/Spacer";
-import MoreButton from "../MoreButton/MoreButton";
+import Message from "../Message/Message";
+import Spacer from "../Spacer/Spacer";
+import MoreButton from "./MoreButton/MoreButton";
 
-import { DURATION_SHORT_MOVIES } from "../../../utils/constants";
+import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 
 import "./MoviesCardList.css";
 
