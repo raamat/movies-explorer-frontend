@@ -18,31 +18,28 @@ export default function App() {
   const [token, setToken, removeToken] = useLocalStorage("token", "");
   const [savedMovies, setSavedMovies] = useLocalStorage("savedMovies", []);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      async function fetchData() {
-        try {
-          const data = await getUserRequest();
-          setCurrentUser(data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      fetchData();
+  async function getUser() {
+    try {
+      const user = await getUserRequest();
+      setCurrentUser(user);
+    } catch (err) {
+      console.log(err);
     }
-  }, [isLoggedIn]);
+  }
+
+  async function getSavedMovies() {
+    try {
+      const movies = await getSavedMoviesRequest();
+      setSavedMovies(movies);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
-    if (isLoggedIn && savedMovies.length === 0) {
-      async function fetchData() {
-        try {
-          const movie = await getSavedMoviesRequest();
-          setSavedMovies(movie);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      fetchData();
+    if (isLoggedIn) {
+      getUser();
+      getSavedMovies();
     }
   }, [isLoggedIn]);
 
