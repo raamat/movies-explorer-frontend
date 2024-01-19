@@ -23,5 +23,5 @@ export default function useSlice(arr) {
     setArray(arr.slice(0, lastElement));
   }
 
-  return { array, handleClick, isButtonActive };
+  return [array, handleClick, isButtonActive] ;
 }

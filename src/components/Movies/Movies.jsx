@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useLocalStorage } from "../../hooks/useStorage";
+import useFilter from "../../hooks/useFilter";
+import useSlice from "../../hooks/useSlice";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import MoreButton from "../MoviesCardList/MoreButton/MoreButton";
+import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
-
 import { getMoviesCard } from "../../utils/MoviesApi";
-
+import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 import "./Movies.css";
 
 export default function Movies({ isLoggedIn, handleAddMovie }) {
@@ -14,6 +17,15 @@ export default function Movies({ isLoggedIn, handleAddMovie }) {
   const [isChecked, setIsChecked] = useLocalStorage("isChecked", false);
   const [isLoading, setIsLoading] = useState(false);
   const [allMovies, setAllMovies] = useLocalStorage("allMovies", []);
+
+  const filteredMovies = useFilter(
+    allMovies,
+    searchValue,
+    isChecked,
+    DURATION_SHORT_MOVIES
+  );
+
+  const [slicedMovies, handleClick, isButtonActive] = useSlice(filteredMovies);
 
   async function handleSearchButtonSubmit() {
     try {
@@ -36,18 +48,21 @@ export default function Movies({ isLoggedIn, handleAddMovie }) {
         <SearchForm
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          handleSearchButtonSubmit={handleSearchButtonSubmit}
           isChecked={isChecked}
-          isLoading={isLoading}
+          handleSearchButtonSubmit={handleSearchButtonSubmit}
           setIsChecked={setIsChecked}
         />
-        <MoviesCardList
-          movies={allMovies}
-          isChecked={isChecked}
-          isLoading={isLoading}
-          searchValue={searchValue}
-          handleAddMovie={handleAddMovie}
-        />
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          !!searchValue && (
+            <MoviesCardList
+              filteredMovies={slicedMovies}
+              handleAddMovie={handleAddMovie}
+            />
+          )
+        )}
+        {!isLoading && isButtonActive && <MoreButton onClick={handleClick} />}
       </main>
       <Footer />
     </>
