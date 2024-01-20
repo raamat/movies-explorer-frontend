@@ -12,7 +12,7 @@ import { getMoviesCard } from "../../utils/MoviesApi";
 import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 import "./Movies.css";
 
-export default function Movies({ isLoggedIn, handleAddMovie }) {
+export default function Movies({ isLoggedIn }) {
   const [searchValue, setSearchValue] = useLocalStorage("searchValue", "");
   const [isChecked, setIsChecked] = useLocalStorage("isChecked", false);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,12 +55,7 @@ export default function Movies({ isLoggedIn, handleAddMovie }) {
         {isLoading ? (
           <Preloader />
         ) : (
-          !!searchValue && (
-            <MoviesCardList
-              filteredMovies={slicedMovies}
-              handleAddMovie={handleAddMovie}
-            />
-          )
+          !!searchValue && <MoviesCardList filteredMovies={slicedMovies} />
         )}
         {!isLoading && isButtonActive && <MoreButton onClick={handleClick} />}
       </main>

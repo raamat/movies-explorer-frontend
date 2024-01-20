@@ -1,13 +1,9 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  saveMovieRequest,
-  deleteMovieRequest,
-} from "../../../utils/MainApi";
+import { saveMovieRequest, deleteMovieRequest } from "../../../utils/MainApi";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import { API_URL } from "../../../utils/constants";
 import "./MoviesCard.css";
-
-const apiURL = "https://api.nomoreparties.co/";
 
 export default function MoviesCard({ card }) {
   const { savedMovies, setSavedMovies } = useContext(CurrentUserContext);
@@ -18,8 +14,8 @@ export default function MoviesCard({ card }) {
   async function handleAddMovie(card) {
     const newCard = {
       ...card,
-      image: `${apiURL + card.image.url}`,
-      thumbnail: `${apiURL + card.image.formats.thumbnail.url}`,
+      image: `${API_URL + card.image.url}`,
+      thumbnail: `${API_URL + card.image.formats.thumbnail.url}`,
       movieId: card.id,
     };
     try {
@@ -68,7 +64,7 @@ export default function MoviesCard({ card }) {
           className="card__image"
           src={`${
             location.pathname === "/movies"
-              ? `${apiURL + card.image.url}`
+              ? `${API_URL + card.image.url}`
               : `${card.image}`
           }`}
           alt={card.nameRU}

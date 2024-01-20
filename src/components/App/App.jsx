@@ -74,7 +74,7 @@ export default function App() {
                         setToken={setToken}
                       />
                     ) : (
-                      <Movies isLoggedIn={isLoggedIn} />
+                      <Navigate to="/movies" />
                     )
                   }
                 />
@@ -88,11 +88,7 @@ export default function App() {
                         setCurrentUser={setCurrentUser}
                       />
                     ) : (
-                      <Movies
-                        isLoggedIn={isLoggedIn}
-                        savedMovies={savedMovies}
-                        setSavedMovies={setSavedMovies}
-                      />
+                      <Navigate to="/movies" />
                     )
                   }
                 />

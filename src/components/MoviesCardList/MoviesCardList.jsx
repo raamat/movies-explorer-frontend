@@ -4,7 +4,7 @@ import Message from "../Message/Message";
 import Spacer from "../Spacer/Spacer";
 import "./MoviesCardList.css";
 
-export default function MoviesCardList({ filteredMovies, handleAddMovie }) {
+export default function MoviesCardList({ filteredMovies }) {
   return (
     <Section classNameSection="card-list">
       {filteredMovies.length > 0 ? (
@@ -12,9 +12,7 @@ export default function MoviesCardList({ filteredMovies, handleAddMovie }) {
           {filteredMovies.map((card, index) => (
             <MoviesCard
               key={index}
-              isLike={card}
               card={card}
-              handleAddMovie={handleAddMovie}
             ></MoviesCard>
           ))}
         </div>
