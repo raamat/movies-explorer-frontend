@@ -9,7 +9,7 @@ export default function Footer() {
           Учебный проект Яндекс.Практикум х BeatFilm.
         </h2>
         <div className="footer__block">
-          <p className="footer__copyright">© 2023</p>
+          <p className="footer__copyright">© 2024</p>
           <ul className="footer__links">
             <li>
               <FooterLink

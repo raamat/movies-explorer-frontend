@@ -42,6 +42,10 @@
   border-radius: 6px;
 }
 
+.nav-in__button-account_home {
+  background-color: #0F4157;
+}
+
 .nav-in__button_burger {
   display: none;
   width: 38px;

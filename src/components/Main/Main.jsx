@@ -8,10 +8,10 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-export default function Main() {
+export default function Main({ isLoggedIn }) {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn}/>
       <main className="main">
         <Promo />
         <AboutProject />

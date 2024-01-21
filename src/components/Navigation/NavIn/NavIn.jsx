@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
@@ -6,6 +6,7 @@ import "./NavIn.css";
 
 function NavIn() {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const pathname = useLocation().pathname;
   return (
     <>
       <nav className="nav-in">
@@ -13,7 +14,9 @@ function NavIn() {
           <li className="nav-in__item">
             <NavLink
               className={({ isActive }) =>
-                `nav-in__link opacity ${isActive ? " nav-in__link__active" : ""}`
+                `nav-in__link opacity ${
+                  isActive ? " nav-in__link__active" : ""
+                }`
               }
               to="/movies"
             >
@@ -23,7 +26,9 @@ function NavIn() {
           <li className="nav-in__item">
             <NavLink
               className={({ isActive }) =>
-                `nav-in__link opacity ${isActive ? " nav-in__link__active" : ""}`
+                `nav-in__link opacity ${
+                  isActive ? " nav-in__link__active" : ""
+                }`
               }
               to="/saved-movies"
             >
@@ -31,9 +36,16 @@ function NavIn() {
             </NavLink>
           </li>
           <li className="nav-in__item">
-            <Link className="nav-in__link nav-in__link_type_button opacity" to="/profile">
+            <Link
+              className="nav-in__link nav-in__link_type_button opacity"
+              to="/profile"
+            >
               Аккаунт
-              <div className="nav-in__button-account"></div>
+              <div
+                className={`nav-in__button-account ${
+                  pathname === "/" && "nav-in__button-account_home"
+                }`}
+              ></div>
             </Link>
           </li>
         </ul>
@@ -42,10 +54,12 @@ function NavIn() {
           onClick={() => setIsBurgerOpen(true)}
         ></button>
       </nav>
-      <BurgerMenu isBurgerOpen={isBurgerOpen} onBurgerClose={() => setIsBurgerOpen(false)} />
+      <BurgerMenu
+        isBurgerOpen={isBurgerOpen}
+        onBurgerClose={() => setIsBurgerOpen(false)}
+      />
     </>
   );
 }
 
 export default NavIn;
-

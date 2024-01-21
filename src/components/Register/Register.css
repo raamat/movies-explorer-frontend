@@ -26,21 +26,6 @@
   padding-top: 40px;
 }
 
-.register__button {
-  border-radius: 3px;
-  background: #4285f4;
-  border: none;
-  color: #fff;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  height: 45px;
-  width: 100%;
-  cursor: pointer;
-  margin-top: 111px;
-}
-
 .register__links-block {
   display: flex;
   justify-content: center;
@@ -91,11 +76,6 @@
 
   .register__form {
     padding-top: 80px;
-  }
-
-  .register__button {
-    margin-top: 200px;
-    font-size: 12px;
   }
 
   .register__links-block {

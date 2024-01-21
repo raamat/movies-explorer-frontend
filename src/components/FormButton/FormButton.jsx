@@ -1,8 +1,16 @@
 import "./FormButton.css";
 
-export default function FormButton({ children }) {
+export default function FormButton({ children, isFormValid, isLoading }) {
   return (
-    <button className="form-button opacity" type="submit">
+    <button
+      disabled={isLoading}
+      className={
+        isFormValid && !isLoading
+          ? "form-button form-button_activ opacity"
+          : "form-button"
+      }
+      type="submit"
+    >
       {children}
     </button>
   );
